@@ -3,570 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TabHome 大宝标签管理器 - 本地标签管理</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(-45deg, #1a1a2e, #16213e, #1a1a2e, #0f3460, #1a1a2e, #16213e);
-            background-size: 400% 400%;
-            animation: gradientBG 20s ease infinite;
-            color: #333333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .content-wrapper {
-            position: relative;
-            z-index: 2;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* 顶部导航栏 */
-        .header {
-            height: 60px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 24px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header h1 {
-            font-size: 20px;
-            font-weight: 600;
-            color: white;
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .search-box {
-            width: 300px;
-            height: 36px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
-            padding: 0 16px;
-            font-size: 14px;
-            outline: none;
-            transition: all 0.3s;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-
-        .search-box::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .search-box:focus {
-            border-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        /* 主体内容区 */
-        .main-content {
-            padding: 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-            flex: 1;
-            width: 100%;
-            column-count: 3;
-            column-gap: 20px;
-        }
-
-        .category {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 20px;
-            width: 100%;
-            break-inside: avoid;
-            margin-bottom: 20px;
-            position: relative;
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3),
-                        inset 0 0 20px rgba(255, 255, 255, 0.05);
-            overflow: hidden;
-        }
-
-        .category::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 16px;
-            padding: 2px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #667eea, #764ba2);
-            background-size: 300% 100%;
-            animation: borderGlow 3s linear infinite;
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-        }
-
-        @keyframes borderGlow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 300% 50%; }
-        }
-
-        .category-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-        }
-
-        .category-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .category-actions {
-            display: flex;
-            gap: 6px;
-        }
-
-        .btn {
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 1px solid transparent;
-            font-weight: 500;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: 1px solid rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #7b8fe8 0%, #8a5cb8 100%);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background-color: white;
-            color: #667eea;
-            border: 1px solid #667eea;
-        }
-
-        .btn-outline:hover {
-            background-color: rgba(102, 126, 234, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .btn-small {
-            padding: 4px 10px;
-            font-size: 11px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-small:hover {
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .tabs-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            width: 100%;
-        }
-
-        .tab-card {
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            padding: 8px 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            font-weight: 500;
-            color: white;
-            white-space: nowrap;
-            min-height: 36px;
-            flex: 0 0 auto;
-            overflow: visible;
-            gap: 8px;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-        }
-
-        .tab-icon {
-            width: 16px;
-            height: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .tab-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 2px;
-        }
-
-        .default-icon {
-            font-size: 12px;
-            opacity: 0.7;
-        }
-
-        .tab-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 8px;
-            padding: 1px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #667eea, #764ba2);
-            background-size: 300% 100%;
-            animation: borderGlow 3s linear infinite;
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-            opacity: 0.7;
-            transition: opacity 0.3s;
-        }
-
-        .tab-card:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .tab-card:hover::before {
-            opacity: 1;
-            animation: borderGlow 2s linear infinite;
-        }
-
-        .tab-actions {
-            position: absolute;
-            top: -6px;
-            right: -6px;
-            display: none;
-            gap: 4px;
-        }
-
-        .tab-card:hover .tab-actions {
-            display: flex;
-        }
-
-        .action-icon {
-            width: 16px;
-            height: 16px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: white;
-        }
-
-        .action-icon:hover {
-            background: rgba(0, 0, 0, 0.7);
-            transform: scale(1.1);
-        }
-
-        /* 对话框 */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-        }
-
-        .modal.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background-color: white;
-            border-radius: 8px;
-            padding: 24px;
-            width: 400px;
-            max-width: 90vw;
-            max-height: 90vh;
-            overflow-y: auto;
-            transform: translateY(-20px);
-            transition: all 0.3s;
-        }
-
-        .modal.show .modal-content {
-            transform: translateY(0);
-        }
-
-        .modal-header {
-            margin-bottom: 20px;
-        }
-
-        .modal-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #333333;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 14px;
-            color: #666666;
-            margin-bottom: 8px;
-        }
-
-        .form-input {
-            width: 100%;
-            height: 36px;
-            border: 1px solid #d9d9d9;
-            border-radius: 4px;
-            padding: 0 12px;
-            font-size: 14px;
-            outline: none;
-            transition: all 0.3s;
-        }
-
-        .form-input:focus {
-            border-color: #1890ff;
-            box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
-        }
-
-        .form-select {
-            width: 100%;
-            height: 36px;
-            border: 1px solid #d9d9d9;
-            border-radius: 4px;
-            padding: 0 12px;
-            font-size: 14px;
-            outline: none;
-            transition: all 0.3s;
-        }
-
-        .form-select:focus {
-            border-color: #1890ff;
-            box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
-        }
-
-        .modal-footer {
-            display: flex;
-            justify-content: flex-end;
-            gap: 12px;
-            margin-top: 24px;
-        }
-
-        /* 空状态 */
-        .empty-state {
-            text-align: center;
-            padding: 20px 0;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 14px;
-            width: 100%;
-        }
-
-        .empty-state-icon {
-            font-size: 32px;
-            margin-bottom: 12px;
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        /* 响应式设计 */
-        @media (max-width: 1200px) {
-            .main-content {
-                column-count: 2;
-                column-gap: 16px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                padding: 0 16px;
-            }
-
-            .search-box {
-                width: 200px;
-            }
-
-            .main-content {
-                padding: 16px;
-                column-count: 1;
-            }
-
-            .tabs-container {
-                gap: 6px;
-            }
-
-            .tab-card {
-                min-height: 32px;
-                padding: 6px 10px;
-                font-size: 12px;
-                border-radius: 6px;
-            }
-
-            .btn {
-                flex: 1;
-                text-align: center;
-                padding: 6px 12px;
-            }
-        }
-    </style>
+    <title>TabHome 大宝标签管理器</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- 粒子动画背景 -->
-    <canvas id="particles-canvas"></canvas>
-    
-    <div class="content-wrapper">
-    <!-- 顶部导航栏 -->
-    <header class="header">
-        <h1>TabHome 大宝标签管理器</h1>
-        <div class="header-actions">
-            <input type="text" class="search-box" placeholder="搜索标签..." id="searchInput">
-            <button class="btn btn-primary" id="addTabBtn">添加标签</button>
-            <button class="btn btn-outline" id="addCategoryBtn">添加分类</button>
-            <button class="btn btn-outline" id="importBtn">导入</button>
-            <button class="btn btn-outline" id="exportBtn">导出</button>
-        </div>
-    </header>
+    <div class="app-container">
+        <!-- 左侧边栏：分组列表 -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="app-title">标签分组</h1>
+                <button class="btn-icon" id="addCategoryBtn" title="添加分组">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 2V14M2 8H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <nav class="category-list" id="categoryList">
+                <!-- 分组列表通过 JS 动态生成 -->
+            </nav>
+            <div class="sidebar-footer">
+                <button class="btn-text" id="importBtn">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 2V10M8 10L5 7M8 10L11 7M2 12H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    导入
+                </button>
+                <button class="btn-text" id="exportBtn">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 14V6M8 6L5 9M8 6L11 9M2 4H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    导出
+                </button>
+            </div>
+        </aside>
 
-    <!-- 主体内容区 -->
-    <main class="main-content" id="mainContent">
-        <!-- 分类和标签将通过JavaScript动态生成 -->
-    </main>
+        <!-- 右侧主内容区 -->
+        <main class="main-content">
+            <!-- 顶部标题栏 -->
+            <header class="content-header">
+                <div class="header-left">
+                    <h2 class="current-category-name" id="currentCategoryName">全部标签</h2>
+                    <span class="tab-count" id="tabCount">0 个标签</span>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M11 11L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <input type="text" placeholder="搜索标签..." id="searchInput">
+                    </div>
+                    <button class="btn-primary" id="addTabBtn">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                            <path d="M8 2V14M2 8H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        添加标签
+                    </button>
+                </div>
+            </header>
 
+            <!-- 标签卡片网格 -->
+            <div class="tabs-grid" id="tabsGrid">
+                <!-- 标签卡片通过 JS 动态生成 -->
+            </div>
 
+            <!-- 空状态 -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <rect x="8" y="12" width="32" height="28" rx="4" stroke="#C7C7CC" stroke-width="2"/>
+                        <path d="M8 20H40" stroke="#C7C7CC" stroke-width="2"/>
+                        <circle cx="16" cy="16" r="2" fill="#C7C7CC"/>
+                        <circle cx="24" cy="16" r="2" fill="#C7C7CC"/>
+                    </svg>
+                </div>
+                <p class="empty-title">暂无标签</p>
+                <p class="empty-desc">点击右上角"添加标签"按钮创建新标签</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- 分组右键菜单 -->
+    <div class="context-menu" id="categoryContextMenu">
+        <button class="context-item" data-action="rename">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2H4C2.89543 2 2 2.89543 2 4V12C2 13.1046 2.89543 14 4 14H12C13.1046 14 14 13.1046 14 12V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M12 2L14 4L8 10H6V8L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            重命名
+        </button>
+        <button class="context-item" data-action="moveUp">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M8 12V4M8 4L4 8M8 4L12 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            上移
+        </button>
+        <button class="context-item" data-action="moveDown">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M8 4V12M8 12L4 8M8 12L12 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            下移
+        </button>
+        <div class="context-divider"></div>
+        <button class="context-item danger" data-action="delete">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M2 4H14M12 4V13C12 13.5523 11.5523 14 11 14H5C4.44772 14 4 13.5523 4 13V4M6 4V3C6 2.44772 6.44772 2 7 2H9C9.55228 2 10 2.44772 10 3V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            删除
+        </button>
+    </div>
 
     <!-- 添加/编辑标签对话框 -->
     <div class="modal" id="tabModal">
+        <div class="modal-overlay"></div>
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="tabModalTitle">添加标签</h2>
+                <h3 class="modal-title" id="tabModalTitle">添加标签</h3>
+                <button class="modal-close" id="tabModalClose">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 3L13 13M13 3L3 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </button>
             </div>
-            <form id="tabForm">
+            <form class="modal-body" id="tabForm">
                 <div class="form-group">
                     <label class="form-label" for="tabName">名称</label>
-                    <input type="text" class="form-input" id="tabName" required>
+                    <input type="text" class="form-input" id="tabName" placeholder="例如：Google" required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="tabUrl">URL</label>
-                    <input type="url" class="form-input" id="tabUrl" required>
+                    <label class="form-label" for="tabUrl">网址</label>
+                    <input type="url" class="form-input" id="tabUrl" placeholder="https://..." required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="tabIcon">图标URL</label>
-                    <input type="url" class="form-input" id="tabIcon">
+                    <label class="form-label" for="tabIcon">图标 URL（可选）</label>
+                    <input type="url" class="form-input" id="tabIcon" placeholder="https://.../favicon.ico">
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="tabCategory">分类</label>
+                    <label class="form-label" for="tabDescription">描述（可选）</label>
+                    <input type="text" class="form-input" id="tabDescription" placeholder="例如：搜索引擎，用于搜索网页内容" maxlength="100">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="tabCategory">分组</label>
                     <select class="form-select" id="tabCategory" required></select>
                 </div>
             </form>
             <div class="modal-footer">
-                <button class="btn btn-outline" id="tabModalCancel">取消</button>
-                <button class="btn btn-primary" id="tabModalSave">保存</button>
+                <button class="btn-secondary" id="tabModalCancel">取消</button>
+                <button class="btn-primary" id="tabModalSave">保存</button>
             </div>
         </div>
     </div>
 
-    <!-- 分类管理对话框 -->
+    <!-- 添加/编辑分组对话框 -->
     <div class="modal" id="categoryModal">
+        <div class="modal-overlay"></div>
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="categoryModalTitle">添加分类</h2>
+                <h3 class="modal-title" id="categoryModalTitle">添加分组</h3>
+                <button class="modal-close" id="categoryModalClose">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 3L13 13M13 3L3 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </button>
             </div>
-            <form id="categoryForm">
+            <form class="modal-body" id="categoryForm">
                 <div class="form-group">
-                    <label class="form-label" for="categoryName">分类名称</label>
-                    <input type="text" class="form-input" id="categoryName" required>
+                    <label class="form-label" for="categoryName">分组名称</label>
+                    <input type="text" class="form-input" id="categoryName" placeholder="例如：常用工具" required>
                 </div>
             </form>
             <div class="modal-footer">
-                <button class="btn btn-outline" id="categoryModalCancel">取消</button>
-                <button class="btn btn-primary" id="categoryModalSave">保存</button>
+                <button class="btn-secondary" id="categoryModalCancel">取消</button>
+                <button class="btn-primary" id="categoryModalSave">保存</button>
             </div>
         </div>
     </div>
 
     <!-- 确认对话框 -->
     <div class="modal" id="confirmModal">
-        <div class="modal-content">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-small">
             <div class="modal-header">
-                <h2 class="modal-title">确认操作</h2>
+                <h3 class="modal-title">确认操作</h3>
             </div>
-            <p id="confirmMessage">确定要执行此操作吗？</p>
+            <div class="modal-body">
+                <p class="confirm-message" id="confirmMessage">确定要执行此操作吗？</p>
+            </div>
             <div class="modal-footer">
-                <button class="btn btn-outline" id="confirmCancel">取消</button>
-                <button class="btn btn-primary" id="confirmOk">确认</button>
+                <button class="btn-secondary" id="confirmCancel">取消</button>
+                <button class="btn-danger" id="confirmOk">确认</button>
             </div>
         </div>
-    </div>
     </div>
 
     <script src="script.js"></script>

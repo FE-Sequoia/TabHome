@@ -8,49 +8,57 @@
           "id": "1-1",
           "name": "Google",
           "url": "https://www.google.com",
-          "icon": "https://www.google.com/favicon.ico"
+          "icon": "https://www.google.com/favicon.ico",
+          "description": "全球最大的搜索引擎，提供网页、图片、视频等多种搜索服务"
         },
         {
           "id": "1-2",
           "name": "GitHub",
           "url": "https://github.com",
-          "icon": "https://github.com/favicon.ico"
+          "icon": "https://github.com/favicon.ico",
+          "description": "全球最大的代码托管平台，支持 Git 版本控制和开源协作"
         },
         {
           "id": "1-3",
           "name": "掘金",
           "url": "https://juejin.cn",
-          "icon": "https://juejin.cn/favicon.ico"
+          "icon": "https://juejin.cn/favicon.ico",
+          "description": "中国领先的技术社区，为开发者提供高质量的技术文章和交流平台"
         },
         {
           "id": "1-4",
           "name": "Stack Overflow",
           "url": "https://stackoverflow.com",
-          "icon": "https://stackoverflow.com/favicon.ico"
+          "icon": "https://stackoverflow.com/favicon.ico",
+          "description": "全球最大的程序员问答社区，解决各种编程问题"
         },
         {
           "id": "1-5",
           "name": "百度",
           "url": "https://www.baidu.com",
-          "icon": "https://www.baidu.com/favicon.ico"
+          "icon": "https://www.baidu.com/favicon.ico",
+          "description": "中国最大的搜索引擎，提供网页、图片、地图等综合搜索服务"
         },
         {
           "id": "1-6",
           "name": "Bing",
           "url": "https://www.bing.com",
-          "icon": "https://www.bing.com/favicon.ico"
+          "icon": "https://www.bing.com/favicon.ico",
+          "description": "微软推出的搜索引擎，提供智能搜索和精美图片"
         },
         {
           "id": "1-7",
           "name": "Figma",
           "url": "https://www.figma.com",
-          "icon": "https://www.figma.com/favicon.ico"
+          "icon": "https://www.figma.com/favicon.ico",
+          "description": "基于云端的协作设计工具，支持实时多人协作设计"
         },
         {
           "id": "1-8",
           "name": "Canva",
           "url": "https://www.canva.com",
-          "icon": "https://www.canva.com/favicon.ico"
+          "icon": "https://www.canva.com/favicon.ico",
+          "description": "在线平面设计工具，提供丰富的模板和设计素材"
         }
       ]
     },
@@ -62,37 +70,43 @@
           "id": "2-1",
           "name": "Notion",
           "url": "https://www.notion.so",
-          "icon": "https://www.notion.so/favicon.ico"
+          "icon": "https://www.notion.so/favicon.ico",
+          "description": "一体化工作空间，支持笔记、文档、数据库和项目管理"
         },
         {
           "id": "2-2",
           "name": "Trello",
           "url": "https://trello.com",
-          "icon": "https://trello.com/favicon.ico"
+          "icon": "https://trello.com/favicon.ico",
+          "description": "可视化的项目管理工具，使用看板方式组织任务和流程"
         },
         {
           "id": "2-3",
           "name": "Slack",
           "url": "https://slack.com",
-          "icon": "https://slack.com/favicon.ico"
+          "icon": "https://slack.com/favicon.ico",
+          "description": "团队沟通协作平台，支持频道、私信和文件共享"
         },
         {
           "id": "2-4",
           "name": "Zoom",
           "url": "https://zoom.us",
-          "icon": "https://zoom.us/favicon.ico"
+          "icon": "https://zoom.us/favicon.ico",
+          "description": "高清视频会议平台，支持多人在线会议和屏幕共享"
         },
         {
           "id": "2-5",
           "name": "Google Drive",
           "url": "https://drive.google.com",
-          "icon": "https://drive.google.com/favicon.ico"
+          "icon": "https://drive.google.com/favicon.ico",
+          "description": "谷歌云存储服务，提供在线文件存储、同步和协作功能"
         },
         {
           "id": "2-6",
           "name": "Dropbox",
           "url": "https://www.dropbox.com",
-          "icon": "https://www.dropbox.com/favicon.ico"
+          "icon": "https://www.dropbox.com/favicon.ico",
+          "description": "云存储和文件同步服务，支持多设备文件共享"
         }
       ]
     },
@@ -104,49 +118,57 @@
           "id": "3-1",
           "name": "MDN Web Docs",
           "url": "https://developer.mozilla.org",
-          "icon": "https://developer.mozilla.org/favicon.ico"
+          "icon": "https://developer.mozilla.org/favicon.ico",
+          "description": "Mozilla 开发者网络，提供权威的 Web 技术文档和教程"
         },
         {
           "id": "3-2",
           "name": "Vue.js",
           "url": "https://vuejs.org",
-          "icon": "https://vuejs.org/favicon.ico"
+          "icon": "https://vuejs.org/favicon.ico",
+          "description": "渐进式 JavaScript 框架，用于构建用户界面"
         },
         {
           "id": "3-3",
           "name": "React",
           "url": "https://reactjs.org",
-          "icon": "https://reactjs.org/favicon.ico"
+          "icon": "https://reactjs.org/favicon.ico",
+          "description": "Facebook 开发的 JavaScript 库，用于构建用户界面"
         },
         {
           "id": "3-4",
           "name": "TypeScript",
           "url": "https://www.typescriptlang.org",
-          "icon": "https://www.typescriptlang.org/favicon.ico"
+          "icon": "https://www.typescriptlang.org/favicon.ico",
+          "description": "JavaScript 的超集，添加了类型系统和其他特性"
         },
         {
           "id": "3-5",
           "name": "Node.js",
           "url": "https://nodejs.org",
-          "icon": "https://nodejs.org/favicon.ico"
+          "icon": "https://nodejs.org/favicon.ico",
+          "description": "基于 Chrome V8 引擎的 JavaScript 运行时，用于服务端开发"
         },
         {
           "id": "3-6",
           "name": "JavaScript.info",
           "url": "https://javascript.info",
-          "icon": "https://javascript.info/favicon.ico"
+          "icon": "https://javascript.info/favicon.ico",
+          "description": "现代 JavaScript 教程网站，从基础到高级的全面学习资源"
         },
         {
           "id": "3-7",
           "name": "LeetCode",
           "url": "https://leetcode.com",
-          "icon": "https://leetcode.com/favicon.ico"
+          "icon": "https://leetcode.com/favicon.ico",
+          "description": "在线编程练习平台，提供算法题目和面试准备"
         },
         {
           "id": "3-8",
           "name": "Coursera",
           "url": "https://www.coursera.org",
-          "icon": "https://www.coursera.org/favicon.ico"
+          "icon": "https://www.coursera.org/favicon.ico",
+          "description": "在线教育平台，与世界顶尖大学和机构合作提供课程"
         }
       ]
     },
@@ -158,37 +180,43 @@
           "id": "4-1",
           "name": "YouTube",
           "url": "https://www.youtube.com",
-          "icon": "https://www.youtube.com/favicon.ico"
+          "icon": "https://www.youtube.com/favicon.ico",
+          "description": "全球最大的视频分享平台，观看和上传视频内容"
         },
         {
           "id": "4-2",
           "name": "Netflix",
           "url": "https://www.netflix.com",
-          "icon": "https://www.netflix.com/favicon.ico"
+          "icon": "https://www.netflix.com/favicon.ico",
+          "description": "全球领先的流媒体服务，提供电影、电视剧和原创内容"
         },
         {
           "id": "4-3",
           "name": "Spotify",
           "url": "https://www.spotify.com",
-          "icon": "https://www.spotify.com/favicon.ico"
+          "icon": "https://www.spotify.com/favicon.ico",
+          "description": "音乐流媒体平台，提供海量音乐和播客内容"
         },
         {
           "id": "4-4",
           "name": "爱奇艺",
           "url": "https://www.iqiyi.com",
-          "icon": "https://www.iqiyi.com/favicon.ico"
+          "icon": "https://www.iqiyi.com/favicon.ico",
+          "description": "中国领先的视频网站，提供电影、电视剧、综艺等内容"
         },
         {
           "id": "4-5",
           "name": "腾讯视频",
           "url": "https://v.qq.com",
-          "icon": "https://v.qq.com/favicon.ico"
+          "icon": "https://v.qq.com/favicon.ico",
+          "description": "腾讯旗下的视频平台，提供丰富的影视内容和直播服务"
         },
         {
           "id": "4-6",
           "name": "B站",
           "url": "https://www.bilibili.com",
-          "icon": "https://www.bilibili.com/favicon.ico"
+          "icon": "https://www.bilibili.com/favicon.ico",
+          "description": "中国年轻人聚集的文化社区和视频平台，弹幕互动是其特色"
         }
       ]
     },
@@ -200,31 +228,36 @@
           "id": "5-1",
           "name": "淘宝",
           "url": "https://www.taobao.com",
-          "icon": "https://www.taobao.com/favicon.ico"
+          "icon": "https://www.taobao.com/favicon.ico",
+          "description": "中国最大的网上购物平台，提供丰富的商品选择"
         },
         {
           "id": "5-2",
           "name": "京东",
           "url": "https://www.jd.com",
-          "icon": "https://www.jd.com/favicon.ico"
+          "icon": "https://www.jd.com/favicon.ico",
+          "description": "中国领先的自营式电商企业，正品保证和快速配送"
         },
         {
           "id": "5-3",
           "name": "拼多多",
           "url": "https://www.pinduoduo.com",
-          "icon": "https://www.pinduoduo.com/favicon.ico"
+          "icon": "https://www.pinduoduo.com/favicon.ico",
+          "description": "社交电商平台，通过拼团方式提供优惠商品"
         },
         {
           "id": "5-4",
           "name": "亚马逊",
           "url": "https://www.amazon.com",
-          "icon": "https://www.amazon.com/favicon.ico"
+          "icon": "https://www.amazon.com/favicon.ico",
+          "description": "全球最大的电商平台，提供海量的商品和快速配送服务"
         },
         {
           "id": "5-5",
-          "name": " eBay",
+          "name": "eBay",
           "url": "https://www.ebay.com",
-          "icon": "https://www.ebay.com/favicon.ico"
+          "icon": "https://www.ebay.com/favicon.ico",
+          "description": "全球知名的在线拍卖和购物网站"
         }
       ]
     },
@@ -236,31 +269,36 @@
           "id": "6-1",
           "name": "微信",
           "url": "https://wx.qq.com",
-          "icon": "https://wx.qq.com/favicon.ico"
+          "icon": "https://wx.qq.com/favicon.ico",
+          "description": "腾讯推出的即时通讯工具，支持文字、语音、视频聊天"
         },
         {
           "id": "6-2",
           "name": "微博",
           "url": "https://weibo.com",
-          "icon": "https://weibo.com/favicon.ico"
+          "icon": "https://weibo.com/favicon.ico",
+          "description": "中国最大的社交媒体平台，分享生活动态和关注热点"
         },
         {
           "id": "6-3",
           "name": "Twitter",
           "url": "https://twitter.com",
-          "icon": "https://twitter.com/favicon.ico"
+          "icon": "https://twitter.com/favicon.ico",
+          "description": "全球知名的社交网络平台，实时分享短消息和资讯"
         },
         {
           "id": "6-4",
           "name": "Facebook",
           "url": "https://www.facebook.com",
-          "icon": "https://www.facebook.com/favicon.ico"
+          "icon": "https://www.facebook.com/favicon.ico",
+          "description": "全球最大的社交网络平台，连接朋友和家人"
         },
         {
           "id": "6-5",
           "name": "Instagram",
           "url": "https://www.instagram.com",
-          "icon": "https://www.instagram.com/favicon.ico"
+          "icon": "https://www.instagram.com/favicon.ico",
+          "description": "以图片和视频分享为主的社交平台"
         }
       ]
     }
