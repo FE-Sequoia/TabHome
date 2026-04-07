@@ -18,9 +18,11 @@ TabHome 大宝标签管理器是一个开源的 Chrome 浏览器标签管理插�
 
 ### 截图展示
 
-| 截图 1 | 截图 2 | 截图 3 |
-|--------|--------|--------|
-| ![截图 1](screen/demo1.png) | ![截图 2](screen/demo2.png) | ![截图 3](screen/demo3.png) |
+![截图 1](screen/demo1.png)
+
+![截图 2](screen/demo2.png)
+
+![截图 3](screen/demo3.png)
 
 ## 技术栈
 
